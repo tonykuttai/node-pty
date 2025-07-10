@@ -45,6 +45,18 @@
 #elif defined(_AIX)
 // Use the portlibfori library for AIX
 #include <pty.h>
+#include <unistd.h>
+#include <cstdio>
+#include <stdlib.h>
+#include <cstddef>
+#include <cstdarg>
+#include <string>
+#include <vector>
+#include <csignal>
+#include <sys/types.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/ioctl.h>
 #endif
 
 /* Some platforms name VWERASE and VDISCARD differently */
