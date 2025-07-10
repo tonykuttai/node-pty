@@ -42,6 +42,9 @@
 #elif defined(__FreeBSD__)
 #include <libutil.h>
 #include <termios.h>
+#elif defined(_AIX)
+// Use the portlibfori library for AIX
+#include <pty.h>
 #endif
 
 /* Some platforms name VWERASE and VDISCARD differently */
@@ -64,6 +67,8 @@
 #include <sys/event.h>
 #include <sys/sysctl.h>
 #include <termios.h>
+#elif defined(_AIX)
+#include <stdlib.h>
 #endif
 
 /* NSIG - macro for highest signal + 1, should be defined */
@@ -74,6 +79,14 @@
 /* macOS 10.14 back does not define this constant */
 #ifndef POSIX_SPAWN_SETSID
   #define POSIX_SPAWN_SETSID 1024
+#endif
+
+#if defined(_AIX)
+extern "C" {
+    int openpty(int *amaster, int *aslave, char *name, const struct termios *termp, const struct winsize *winp);
+    pid_t forkpty(int *amaster, char *name, const struct termios *termp, const struct winsize *winp);
+    int login_tty(int fd);
+}
 #endif
 
 /* environ for execvpe */
