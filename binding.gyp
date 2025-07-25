@@ -85,35 +85,7 @@
               'libraries!': [
                 '-lutil'
               ]
-            }],
-            ['OS=="aix"', {
-                "include_dirs": [
-                     "/opt/freeware/include",
-                     "<!(echo $HOME)/local/include"
-                    ],
-                    "libraries":[
-                    "/home/varghese/local/lib/libutil.so",
-                    "/home/varghese/local/lib/libutil.so.2",
-                    "-lutil"
-                    ],
-                    "cflags_cc":[
-                    "-maix64",
-                    "-std=gnu++17",
-                    "-D_GLIBCXX_USE_CXX11_ABI=0",
-                    "-fPIC",
-                    "-pthread",
-                    "-Wall",
-                    "-Wextra",
-                    "-Wno-unused-parameter",
-                    "-maix64",
-                    "-O3",
-                    "-fno-omit-frame-pointer"
-                    ],
-                    "defines":[
-                    "_AIX=1"
-                    ]
-            }   
-          ]
+            }]
           ]
         }
       ]

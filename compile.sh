@@ -18,7 +18,5 @@ g++ -shared -maix64 \
   -lstdc++ \
   -o build/Release/pty.node \
   build/Release/pty.o \
-  -L$HOME/local/lib \
-    $HOME/local/lib/libutil.so.2
-
-
+  -L$HOME/local/portlibforaix/lib \
+    $HOME/local/portlibforaix/lib/libutil.so.2
