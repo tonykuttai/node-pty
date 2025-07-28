@@ -85,6 +85,44 @@
               'libraries!': [
                 '-lutil'
               ]
+            }],
+            # AIX-specific configuration - EXACTLY matching compile.sh
+            ['OS=="aix"', {
+              'libraries!': [
+                '-lutil'
+              ],
+              # Compile flags exactly from compile.sh
+              'cflags_cc': [
+                '-I/opt/nodejs/include/node',
+                '-I<!(echo $HOME)/.cache/node-gyp/<!(node -v)/include/node',
+                '-Inode_modules/node-addon-api',
+                '-I/opt/freeware/include',
+                '-std=gnu++17',
+                '-D_GLIBCXX_USE_CXX11_ABI=0',
+                '-fPIC',
+                '-pthread',
+                '-Wall',
+                '-Wextra',
+                '-Wno-unused-parameter',
+                '-maix64',
+                '-O3',
+                '-fno-omit-frame-pointer'
+              ],
+              # Link flags exactly from compile.sh
+              'ldflags': [
+                '-shared',
+                '-maix64',
+                '-Wl,-bimport:/opt/nodejs/include/node/node.exp',
+                '-pthread',
+                '-lpthread',
+                '-lstdc++',
+                '-L<!(echo $HOME)/local/portlibforaix/lib',
+                '<!(echo $HOME)/local/portlibforaix/lib/libutil.so.2'
+              ],
+              # No separate libraries section - everything in ldflags
+              'libraries': [],
+              # No separate include_dirs - everything in cflags_cc
+              'include_dirs': []
             }]
           ]
         }

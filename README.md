@@ -79,6 +79,13 @@ npm install
 npm run build
 ```
 
+### AIX
+Run the build script (`npm install && npm run build` doesn't work now)
+```
+sh clean.sh
+sh build_node_pty_aix.sh
+```
+
 ## Dependencies
 
 Node.JS 16 or Electron 19 is required to use `node-pty`. What version of node is supported is currently mostly bound to [whatever version Visual Studio Code is using](https://github.com/microsoft/node-pty/issues/557#issuecomment-1332193541).
