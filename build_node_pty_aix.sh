@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Create build directory
 mkdir -p build/Release
 
@@ -8,17 +10,17 @@ g++ -o build/Release/pty.o -c src/unix/pty.cc \
   -I$HOME/.cache/node-gyp/$(node -v)/include/node \
   -Inode_modules/node-addon-api \
   -I/opt/freeware/include \
-  -I$HOME/local/portlibforaix/include \
   -std=gnu++17 -D_GLIBCXX_USE_CXX11_ABI=0 \
   -fPIC -pthread -Wall -Wextra -Wno-unused-parameter \
-  -maix64 -O3 -fno-omit-frame-pointer \
-  -D_AIX=1 -D_LARGE_FILES=1
+  -maix64 -O3 -fno-omit-frame-pointer
 
 # Link the shared library
 echo "Linking shared library..."
 g++ -shared -maix64 \
   -Wl,-bimport:/opt/nodejs/include/node/node.exp \
   -pthread \
+  -lpthread \
+  -lstdc++ \
   -o build/Release/pty.node \
   build/Release/pty.o \
   -L$HOME/local/portlibforaix/lib \
