@@ -10,6 +10,7 @@ g++ -o build/Release/pty.o -c src/unix/pty.cc \
   -I$HOME/.cache/node-gyp/$(node -v)/include/node \
   -Inode_modules/node-addon-api \
   -I/opt/freeware/include \
+  -I$HOME/local/portlibforaix/include \
   -std=gnu++17 -D_GLIBCXX_USE_CXX11_ABI=0 \
   -fPIC -pthread -Wall -Wextra -Wno-unused-parameter \
   -maix64 -O3 -fno-omit-frame-pointer
